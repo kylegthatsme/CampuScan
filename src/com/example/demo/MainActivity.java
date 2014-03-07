@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import geo.GeoObj;
+
 import gl.GL1Renderer;
 import gl.GLFactory;
 import system.ArActivity;
@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 								//y = location.getLongitude();
 								//GeoObj o = new GeoObj(x,y);
 								//o.setComp(objectFactory.newArrow());
-								world.add(objectFactory.newSolarSystem(new Vec(-10,10,10)));
+								world.add(objectFactory.newSolarSystem(new Vec(-10,0,10)));
 								//world.add(o);
 					}
 					
