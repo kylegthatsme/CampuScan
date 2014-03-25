@@ -13,7 +13,13 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
+        <activity android:name="com.example.demo.MainMenuActivity" android:label="@string/title_activity_main_menu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity><activity
             android:name="com.example.demo.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
@@ -22,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-         <activity
+        <activity
             android:name="system.ArActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
@@ -58,8 +64,10 @@
             android:name="gui.simpleUI.SimpleUIv1"
             android:theme="@android:style/Theme.Translucent" >
         </activity>
+        
     </application>
-     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -69,7 +77,7 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:glEsVersion="0x00020000" />
-     <!--
+    <!--
          This should be added to to allow the fullscreen mode to big screen 
 		devices like the samsung galaxy tab
     -->

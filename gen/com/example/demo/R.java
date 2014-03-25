@@ -90,28 +90,29 @@ public final class R {
         public static final int ScrollView01=0x7f09000d;
         public static final int ShortDescrView=0x7f090022;
         public static final int TextView01=0x7f09000e;
-        public static final int action_settings=0x7f090032;
+        public static final int action_settings=0x7f090033;
         public static final int awfa_accText=0x7f090003;
         public static final int awfa_image=0x7f090001;
         public static final int awfa_layout=0x7f090000;
         public static final int awfa_steps=0x7f090004;
         public static final int awfa_warning=0x7f090005;
-        public static final int button1=0x7f09002c;
-        public static final int button2=0x7f090031;
-        public static final int button3=0x7f09002d;
+        public static final int button1=0x7f09002d;
+        public static final int button2=0x7f090032;
+        public static final int button3=0x7f09002e;
         public static final int demoScreenLinView=0x7f090027;
         public static final int dialogTestButton=0x7f09000b;
         public static final int errorMailButton=0x7f09002a;
         public static final int errorText=0x7f090029;
-        public static final int gameElementView1=0x7f09002e;
-        public static final int gameElementView2=0x7f090030;
+        public static final int gameElementView1=0x7f09002f;
+        public static final int gameElementView2=0x7f090031;
         public static final int infoScreenScrollview=0x7f09002b;
         public static final int linearLayout1=0x7f090002;
+        public static final int main_menu_start=0x7f09002c;
         public static final int main_view=0x7f090011;
         public static final int ok_button=0x7f090010;
         public static final int outerDemoLinLay=0x7f090026;
         public static final int progressBar1=0x7f090006;
-        public static final int radarView1=0x7f09002f;
+        public static final int radarView1=0x7f090030;
         public static final int sBottom=0x7f09001c;
         public static final int sLeft=0x7f090017;
         public static final int sRight=0x7f09001a;
@@ -126,10 +127,12 @@ public final class R {
         public static final int demoselector=0x7f030005;
         public static final int errorreports=0x7f030006;
         public static final int infoscreen=0x7f030007;
-        public static final int test_layout=0x7f030008;
+        public static final int mainmenu=0x7f030008;
+        public static final int test_layout=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f080000;
+        public static final int main_menu=0x7f080001;
     }
     public static final class raw {
         public static final int camaro_mtl=0x7f040000;
@@ -140,6 +143,8 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int errorstring=0x7f050001;
         public static final int hello_world=0x7f050003;
+        public static final int start=0x7f050005;
+        public static final int title_activity_main_menu=0x7f050004;
     }
     public static final class style {
         /** 
