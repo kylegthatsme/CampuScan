@@ -1,14 +1,18 @@
 package com.example.demo;
 
 
+import geo.GeoObj;
 import gl.GL1Renderer;
 import gl.GLFactory;
 import system.ArActivity;
 import system.DefaultARSetup;
 import util.Vec;
+import worldData.Obj;
 import worldData.World;
 import android.location.Location;
-import android.location.LocationManager;
+//import android.graphics.Color;
+//import android.location.Location;
+//import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -17,10 +21,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
-	LocationManager lm;
-	Location location;
+	//LocationManager lm;
+	//Location location;
 	double x;
 	double y;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,12 +40,19 @@ public class MainActivity extends Activity {
 					public void addObjectsTo(GL1Renderer renderer, World world,
 							GLFactory objectFactory) {
 								//location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-								//x = location.getLatitude();
-								//y = location.getLongitude();
-								//GeoObj o = new GeoObj(x,y);
-								//o.setComp(objectFactory.newArrow());
-								world.add(objectFactory.newSolarSystem(new Vec(-10,0,10)));
+								x = 34.403947; 
+										//location.getLatitude();
+								y = -82.501021;
+									//location.getLongitude();
+								Location l = new Location("");
+							    l.setLatitude(34.40394);
+							    l.setLongitude(-82.50102);
+							    Obj o = new GeoObj(l);
+							
+								//GeoObj o = new GeoObj(x,y,0,"k1");
+							    o.setComp(objectFactory.newCube());;
 								//world.add(o);
+								//world.add(objectFactory.newHexGroupTest(new Vec(-10,0,10)));
 					}
 					
 				});
