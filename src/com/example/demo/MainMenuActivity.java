@@ -2,11 +2,14 @@ package com.example.demo;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class MainMenuActivity extends Activity {
 
@@ -36,5 +39,29 @@ public class MainMenuActivity extends Activity {
 
 
 	};
+	public void onRadioButtonClicked(View view) {
+	    // Is the button now checked?
+	    boolean checked = ((RadioButton) view).isChecked();
+	    Context context = getApplicationContext();
+	    int duration = Toast.LENGTH_LONG;
+	    // Check which radio button was clicked
+	    switch(view.getId()) {
+	        case R.id.internal:
+	            if (checked){
+	            	//internal radio button selected
+			    	CharSequence text = "You selected the internal DB";
+			    	Toast toast = Toast.makeText(context, text, duration);
+			    	toast.show();
+			    	
+	            }
+	        case R.id.external:
+	            if (checked){
+	            	//external radio button selected
+	            	CharSequence text = "You selected the internal DB";
+			    	Toast toast = Toast.makeText(context, text, duration);
+			    	toast.show();
+	            }
+	    }
+	}
 
 }

@@ -6,5 +6,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main_menu">Main Men</string>
     <string name="start">Start</string>
+    <string name="onradiobuttonclicked">onRadioButtonClicked</string>
+    <string name="local_db">Local DB</string>
+    <string name="external_db">External DB</string>
 
 </resources>
