@@ -1,6 +1,7 @@
 # TigerEye
 
-Page created by Kyle Gehrman 2014. 
+Page created by Kyle Gehrman 2014.  <br>
+Email Questions or Comments to: kgehrma@g.clemson.edu
 <br> 
 <br>
 TigerEye is an Android application that implements a creative visualization of GPS points through the use of an augmented reality interface over an Android device's camera view. The target audience is college freshmen, to be used as a tool to help them find academic buildings but any GPS points could be used for further implementation. 
