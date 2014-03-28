@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 					public void addObjectsTo(GL1Renderer renderer, World world,
 							GLFactory objectFactory) {
 						
-							RadioButton selectRadio = (RadioButton) findViewById(dbselectmain.getCheckedRadioButtonId());
+							//RadioButton selectRadio = (RadioButton) findViewById(dbselectmain.getCheckedRadioButtonId());
 								
 								x = 34.403947; 							
 								y = -82.501021;
