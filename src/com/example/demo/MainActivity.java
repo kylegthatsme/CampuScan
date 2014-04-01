@@ -43,40 +43,19 @@ public class MainActivity extends Activity {
 						
 							//RadioButton selectRadio = (RadioButton) findViewById(dbselectmain.getCheckedRadioButtonId());
 								
-								x = 34.403947; 							
-								y = -82.501021;
 								Location l = new Location("");
 							    l.setLatitude(34.40394);
 							    l.setLongitude(-82.50102);
 							    Obj o = new GeoObj(l);
-							
 							    o.setComp(objectFactory.newCube());
-							    
+							    world.add(o);
 							    
 							    ArrayList<Location> locationList = new ArrayList<Location>();
-							    
-							    l.setLatitude(34.676188);
-							    l.setLongitude(-82.834338);
-							    locationList.add(new Location(l));
-							    
-							    l.setLatitude(34.670188);
-							    l.setLongitude(-82.834338);
-							    locationList.add(new Location(l));
-							    
-							    l.setLatitude(34.676188);
-							    l.setLongitude(-82.830338);
-							    locationList.add(new Location(l));
-							    
-							    l.setLatitude(34.678188);
-							    l.setLongitude(-82.838338);
-							    locationList.add(new Location(l));
-							    
+							        
 							    //mcadams
 							    l.setLatitude(34.6755916);
 							    l.setLongitude(-82.8346138);
-							    //locationList.add(new Location(l));
 							    Obj mcadms = new GeoObj(l);
-							    
 							    mcadms.setComp(objectFactory.newTextObject("McAdams", new Vec(0,0,0), getApplicationContext() , camera));
 							    world.add(mcadms);
 							   
@@ -90,7 +69,7 @@ public class MainActivity extends Activity {
 							    }
 							    
 							    
-							    world.add(o);
+							    
 							   
 					}
 					
