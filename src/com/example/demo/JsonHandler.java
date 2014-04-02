@@ -35,7 +35,7 @@ public class JsonHandler extends Activity {
 	    
 	    
 	    setContentView(R.layout.mainmenu);
-	    /*String readPoints = readPoints();
+	    String readPoints = readPoints();
 	    try {
 	    	
 		    JSONArray jsonArray = new JSONArray(readPoints);
@@ -47,7 +47,7 @@ public class JsonHandler extends Activity {
 		    
 	    } catch (Exception e) {
 	    	e.printStackTrace();
-	    }*/
+	    }
     }
 
     public String readPoints() {

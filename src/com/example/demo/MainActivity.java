@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import geo.GeoObj;
@@ -22,11 +24,13 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.location.Location;
+import android.os.AsyncTask;
 //import android.graphics.Color;
 //import android.location.Location;
 //import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.text.Layout.Alignment;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -44,22 +48,45 @@ public class MainActivity extends Activity {
 	double x;
 	double y;
 	
+	ArrayList<Double> LatList, LonList;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Button b = new Button(this);
+		
+		//JsonHandler handler = new JsonHandler();
+		//String result = handler.readPoints();
+		
+		//Log.i("JSON STUFF", result);
+		
 		b.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				new GetPoints().execute();
+				
+				//Log.i("POINTS",LonList.get(0).toString());
+				
+				//for(Double entry: LonList){
+				//	Log.i("POINTS", entry.toString());
+				//}
+				
 				ArActivity.startWithSetup(MainActivity.this, new DefaultARSetup(){
 					
-					//JsonHandler handler = new JsonHandler();
+					
+					
 
 					@Override
 					public void addObjectsTo(GL1Renderer renderer, World world,
 							GLFactory objectFactory) {
 												
+								//GetPoints JSONRetriever = new GetPoints();
+						
+								
+						
+						
+						
 								ArrayList<Location> locationList = new ArrayList<Location>();
 							    
 							    // Locations near Robin's House
@@ -162,6 +189,88 @@ public class MainActivity extends Activity {
 		});
 		setContentView(b);
 	}
+	
+	
+	//JSON **MIGHT NOT WORK**
+	private static String pt_url="http://people.clemson.edu/~myankou/php/EyeApp/points.php";
+	private static final String TAG_NAME = "Name";
+	//add tags for latitude and longitude and campus ID
+	ArrayList<String> PList;
+	//ArrayList<Double> LatList, LonList;
+	//I guess use separate lists for each set of variables since the one implemented here only retreives names
+
+	//This is the ASYNCTASK to be implemented in the activity
+				private class GetPoints extends AsyncTask<Void, Void, Void>{
+					
+					@Override
+			        protected void onPreExecute() {
+			            super.onPreExecute();
+			            //pDialog = new ProgressDialog(NameOfCurrentActivity.this);
+			            //pDialog.setMessage("Retreiving points...");
+			            //pDialog.setCancelable(false);
+			            //pDialog.show();
+			 
+			        }
+					
+					@Override
+					protected Void doInBackground(Void... arg0){
+						ServiceHandler sh = new ServiceHandler();
+						 
+			            // Making a request to url and getting response
+			            String ptStr = sh.makeServiceCall(pt_url, ServiceHandler.GET);
+			 
+			            Log.d("Response: ", "> " + ptStr);
+			 
+			            if (ptStr != null) {
+			                try {
+			                    JSONArray jsonObj = new JSONArray(ptStr);
+			                    PList = new ArrayList<String>();
+			                    PList.add("");
+			                    
+			                    LatList = new ArrayList<Double>();
+			                    LonList = new ArrayList<Double>();
+			                    
+								//add 3 more for loops for each set of variables
+			                    for (int i = 0; i < jsonObj.length(); i++) {
+			                        JSONObject c = jsonObj.getJSONObject(i);
+			                		PList.add(c.getString(TAG_NAME));
+			                		LatList.add(c.getDouble("gps_lat"));
+			                		LonList.add(c.getDouble("gps_lon"));
+			                    }
+			                   // for (int i = 0; i < json)
+			                    
+			                } catch (JSONException e) {
+			                    e.printStackTrace();
+			                }
+			            } else {
+			                Log.e("ServiceHandler", "Couldn't get any data from the url");
+			            }
+			 
+			            return null;
+					}
+					
+					@Override
+					protected void onPostExecute(Void result){
+						super.onPostExecute(result);
+			            // Dismiss the progress dialog
+			            //if (pDialog.isShowing())
+			            //    pDialog.dismiss();
+			            /**
+			             * Updating parsed JSON data into ListView
+			             * */
+
+						//for(String entry: PList){
+						//	Log.i("GETPOINTS", entry);	
+						//	}
+						
+						/* Adapters are updated here, so change this to fit whatever we use in UI
+						stAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, FList);
+			        	festAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+						inputFest.setAdapter(festAdapter);
+						*/
+			        	
+					}
+				}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

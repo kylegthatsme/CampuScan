@@ -19,7 +19,7 @@ public class MainMenuActivity extends Activity {
 		setContentView(R.layout.mainmenu);
 		
 		Button b_start = (Button)this.findViewById(R.id.main_menu_start);
-		
+		// change
 		b_start.setOnClickListener(l_start);
 	}
 
@@ -32,8 +32,14 @@ public class MainMenuActivity extends Activity {
 	private OnClickListener l_start = new OnClickListener() {
 	    public void onClick(View v) {
 	      // do something when the button is clicked
+	    	
 	    	Intent myIntent = new Intent(v.getContext(), MainActivity.class);
 	    	startActivity(myIntent);
+	    	
+	    	//Intent JSONIntent = new Intent(v.getContext(), JsonHandler.class);
+	    	//startActivity(JSONIntent);
+	    	
+	    	
 	    }
 	
 
