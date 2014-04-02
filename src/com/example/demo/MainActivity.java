@@ -41,6 +41,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebSettings.TextSize;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	//LocationManager lm;
@@ -49,6 +50,7 @@ public class MainActivity extends Activity {
 	double y;
 	
 	ArrayList<Double> LatList, LonList;
+	private ProgressDialog pDialog;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,17 +62,22 @@ public class MainActivity extends Activity {
 		
 		//Log.i("JSON STUFF", result);
 		
+		LonList = new ArrayList<Double>();
+		LatList = new ArrayList<Double>();
+		
 		b.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				new GetPoints().execute();
+				//new GetPoints().execute();
 				
 				//Log.i("POINTS",LonList.get(0).toString());
 				
-				//for(Double entry: LonList){
-				//	Log.i("POINTS", entry.toString());
-				//}
+				
+				// Could break if JSON not formatted
+				for(Double entry: LonList){
+					Log.i("POINTS", "POINTFLAG" + entry.toString());
+				}
 				
 				ArActivity.startWithSetup(MainActivity.this, new DefaultARSetup(){
 					
@@ -89,6 +96,7 @@ public class MainActivity extends Activity {
 						
 								ArrayList<Location> locationList = new ArrayList<Location>();
 							    
+								/*
 							    // Locations near Robin's House
 							    locationList.add(newLoc(34.725244, -82.909956));
 							    locationList.add(newLoc(34.725116, -82.909876));
@@ -127,8 +135,15 @@ public class MainActivity extends Activity {
 							    
 							    // Martin Hall
 							    locationList.add(newLoc(34.6780583, -82.8355305));
+							    */
 							    
-							    
+								Toast toast = Toast.makeText(getApplicationContext(), "LatList.size(): " + Integer.toString(LatList.size()), 10000);
+						    	toast.show();
+								
+								for(int i = 0; i < LatList.size(); i++){
+									locationList.add(newLoc(LatList.get(i), LonList.get(i)));
+								}
+								
 							    
 							    Obj x;
 							    for(Location i: locationList){
@@ -188,6 +203,11 @@ public class MainActivity extends Activity {
 			
 		});
 		setContentView(b);
+		
+		new GetPoints().execute();
+		for(Double entry: LonList){
+			Log.i("POINTS", "POINTFLAG" + entry.toString());
+		}
 	}
 	
 	
@@ -201,14 +221,14 @@ public class MainActivity extends Activity {
 
 	//This is the ASYNCTASK to be implemented in the activity
 				private class GetPoints extends AsyncTask<Void, Void, Void>{
-					
+					//ProgressDialog pDialog;
 					@Override
 			        protected void onPreExecute() {
 			            super.onPreExecute();
-			            //pDialog = new ProgressDialog(NameOfCurrentActivity.this);
-			            //pDialog.setMessage("Retreiving points...");
-			            //pDialog.setCancelable(false);
-			            //pDialog.show();
+			            pDialog = new ProgressDialog(getApplicationContext());
+			            pDialog.setMessage("Retreiving points...");
+			            pDialog.setCancelable(false);
+			            pDialog.show();
 			 
 			        }
 					
@@ -253,8 +273,8 @@ public class MainActivity extends Activity {
 					protected void onPostExecute(Void result){
 						super.onPostExecute(result);
 			            // Dismiss the progress dialog
-			            //if (pDialog.isShowing())
-			            //    pDialog.dismiss();
+			            if (pDialog.isShowing())
+			                pDialog.dismiss();
 			            /**
 			             * Updating parsed JSON data into ListView
 			             * */
