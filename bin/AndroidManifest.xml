@@ -60,7 +60,15 @@
 
         <activity
 
-            android:name="com.example.demo.ServiceHandler"
+            android:name="com.example.demo.JsonHandler"
+
+            android:label="@string/app_name" >
+
+        </activity>
+
+        <activity
+
+            android:name="com.example.demo.HttpHandler"
 
             android:label="@string/app_name" >
 
