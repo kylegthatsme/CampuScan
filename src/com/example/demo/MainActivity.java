@@ -1,3 +1,4 @@
+//<<<<<<< HEAD
 package com.example.demo;
 
 
@@ -273,7 +274,7 @@ public class MainActivity extends Activity {
 					
 					@Override
 					protected Void doInBackground(Void... arg0){
-						ServiceHandler sh = new ServiceHandler();
+						ServiceHandler sh = new ServiceHandler(MainActivity.this);
 						 
 			            // Making a request to url and getting response
 			            String ptStr = sh.makeServiceCall(pt_url, ServiceHandler.GET);
@@ -347,5 +348,4 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
 }
