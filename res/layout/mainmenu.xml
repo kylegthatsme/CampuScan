@@ -14,28 +14,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
         android:text="@string/start" />
-    <Button
-        android:id="@+id/test_json"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:text="JSON" />
-    <RadioGroup 
-        android:id="@+id/dbselectmain"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:orientation="vertical">
-    <RadioButton android:id="@+id/internal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/local_db"
-        android:onClick="@string/onradiobuttonclicked"/>
-    <RadioButton android:id="@+id/external"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/external_db"
-        android:onClick="@string/onradiobuttonclicked"/>
-</RadioGroup>
-
 </LinearLayout>
 

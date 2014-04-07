@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 public class MainMenuActivity extends Activity {
 	private static String pt_url="http://people.clemson.edu/~myankou/php/EyeApp/points.php";
+	private static String TAG_NAME = "name";
 	
 	
 	ArrayList<Double> LatList, LonList;
@@ -35,11 +36,8 @@ public class MainMenuActivity extends Activity {
 		setContentView(R.layout.mainmenu);
 		
 		Button b_start = (Button)this.findViewById(R.id.main_menu_start);
-		Button test = (Button)this.findViewById(R.id.test_json);
 		// change
-		b_start.setOnClickListener(l_start);
-		test.setOnClickListener(tester);
-		
+		b_start.setOnClickListener(l_start);		
 		sh = new ServiceHandler(this);
 		
 		//new GetPoints().execute();
@@ -68,7 +66,7 @@ public class MainMenuActivity extends Activity {
 	    public void onClick(View v) {
 	    	ArrayList<String> list = new ArrayList<String>();
 	    	try {
-	    		list = sh.getList(pt_url);
+	    		list = sh.getList(pt_url, TAG_NAME);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -76,29 +74,4 @@ public class MainMenuActivity extends Activity {
 	    	Toast.makeText(MainMenuActivity.this, "PList: "+list, Toast.LENGTH_LONG).show();
 	    }
 	};
-	public void onRadioButtonClicked(View view) {
-	    // Is the button now checked?
-	    boolean checked = ((RadioButton) view).isChecked();
-	    Context context = getApplicationContext();
-	    // Check which radio button was clicked
-	    switch(view.getId()) {
-	        case R.id.internal:
-	            if (checked){
-	            	//internal radio button selected
-			    	CharSequence text = "You selected the internal DB";
-			    	Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
-			    	toast.show();
-			    	
-	            }
-	        case R.id.external:
-	            if (checked){
-	            	//external radio button selected
-	            	CharSequence text = "You selected the internal DB";
-			    	Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
-			    	toast.show();
-	            }
-	    }
-	}
-	
-
 }

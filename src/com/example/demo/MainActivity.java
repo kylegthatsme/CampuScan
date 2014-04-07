@@ -1,4 +1,3 @@
-//<<<<<<< HEAD
 package com.example.demo;
 
 
@@ -12,6 +11,8 @@ import java.util.concurrent.TimeoutException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import commands.Command;
 
 import geo.GeoObj;
 import gl.GL1Renderer;
@@ -97,70 +98,12 @@ public class MainActivity extends Activity {
 					public void addObjectsTo(GL1Renderer renderer, World world,
 							GLFactory objectFactory) {
 												
-								//GetPoints JSONRetriever = new GetPoints();
-						
-								
-						
-						
-						
 								ArrayList<Location> locationList = new ArrayList<Location>();
 							    
-								//Location test = (newLoc(34.725244, -82.909956));
-								
-								// add points from external db
 								for(int i=0; i<PList.size(); i++){
 									locationList.add(newLoc(LatList.get(i),LonList.get(i)));
 								}
-								
-								/*
-							    // Locations near Robin's House
-							    locationList.add(newLoc(34.725244, -82.909956));
-							    locationList.add(newLoc(34.725116, -82.909876));
-							    locationList.add(newLoc(34.724948, -82.909795));
-							    locationList.add(newLoc(34.724997, -82.909607));
-							    locationList.add(newLoc(34.72559, -82.907668));
-							    */
-							    
-							    /*
-							    // McAdams
-							    locationList.add(newLoc(34.6755916, -82.8346138));
-							    
-							    // Campus Buildings
-							    
-							    //Hendrix Center
-							    locationList.add(newLoc(34.6760527, -82.8318250));
-							    
-							    //JSONObject asdf;
-							    //asdf.get
-							    
-							    //Red Fern
-							    locationList.add(newLoc(34.6757500, -82.8335805));
-							    
-							    // McAdams Hall
-							    locationList.add(newLoc(34.6755916, -82.8346138));
-							    
-							    // Edwards Hall
-							    locationList.add(newLoc(34.6768166, -82.8337916));
-							    
-							    // Vicory Hall
-							    locationList.add(newLoc(34.6773750, -82.8337972));
-							    
-							    // Daniel Hall
-							    locationList.add(newLoc(34.6771472, -82.8351611));
-							    
-							    // Kinard Hall
-							    locationList.add(newLoc(34.6775249, -82.8351500));
-							    
-							    // Martin Hall
-							    locationList.add(newLoc(34.6780583, -82.8355305));
-							    
-							    */
-							    
-							//	Toast toast = Toast.makeText(getApplicationContext(), "PList.size(): " + Integer.toString(PList.size()) + "\n CONTENTS: " + PList.get(0), 10000);
-						    	  
-							//	Toast toast = Toast.makeText(getApplicationContext(), "LatList.size(): " + Integer.toString(LatList.size()), 10000);
-						    //	toast.show();
-								
+													    			
 								for(int i = 0; i < LatList.size(); i++){
 									locationList.add(newLoc(LatList.get(i), LonList.get(i)));
 								}
@@ -169,11 +112,11 @@ public class MainActivity extends Activity {
 							    Obj x;
 							    //for(Location i: locationList){
 							    for(int i = 0; i < PList.size(); i++){
+							    	//http://stackoverflow.com/questions/11843402/android-droidar-setting-up-pois-and-show-details-on-click
+							    	//Command k = new Command();
 							    	x = new GeoObj(locationList.get(i));
-							    	//x.setComp(objectFactory.newCube(Color.red()));
-							    	//x.setComp(objectFactory.newTextured2dShape(textAsBitmap("TEST", (float)18.0, Color.red().toIntRGB()), "TESTBITMAP"));
 							    	
-							    	//String text = "Hello world!";
+							    	//x.setOnClickCommand(k);
 							    	text = PList.get(i);
 							    	Log.i("PLISTTEST","PList.size(): " + Integer.toString(PList.size()));
 							    	Log.i("PLISTTEST","PList.get(i): " + PList.get(i));

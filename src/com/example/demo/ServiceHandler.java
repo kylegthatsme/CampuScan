@@ -26,9 +26,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public class ServiceHandler {
-	private static final String TAG_NAME = "name";
-	private static final String TAG_LON = "gps_lon";
-	private static final String TAG_LAT = "gps_lat";
+	private static String TAG = new String();
 	
 	ArrayList<String> PList;
 	 
@@ -104,25 +102,11 @@ public class ServiceHandler {
  
     }
     
-    public ArrayList<String> getList(String url) throws JSONException{
+    public ArrayList<String> getList(String url, String tag) throws JSONException{
     	GetList AT = new GetList();
-
+    	TAG=tag;
     	AT.execute(url);
-    	
-    	//PList = new ArrayList<String>();
-    	//int i;
     	Log.d("",""+AT.getStatus());
-    	/*if((AT.getStatus().equals(AsyncTask.Status.FINISHED))){
-    		if (pDialog.isShowing()) pDialog.dismiss();
-    		Log.d("Status: ",AT.getStatus().toString());
-	    	/*for (i = 0; i < json.length(); i++) {
-	        	JSONObject c = json.getJSONObject(i);
-	        	Log.i("Name of Object: "+i,c.getString(TAG_NAME));
-	            PList.add(c.getString(TAG_NAME));
-	            //LatList.add(c.getDouble(TAG_LAT));
-	            //LonList.add(c.getDouble(TAG_LON));
-	        }
-    	}*/
     	return PList;
     }
     
@@ -140,25 +124,18 @@ public class ServiceHandler {
 					
 		@Override
 		protected JSONArray doInBackground(String... arg){
-			//ServiceHandler sh = new ServiceHandler();
-						 
-			//Log.i("arg[0]",arg[0]);
-			// Making a request to url and getting response
-			Log.d("GetList: ","doInBackground()");
 			String ptStr = makeServiceCall(arg[0], GET);
 			 
 			Log.d("Response: ", "> " + ptStr);
 			 
 			if (ptStr != null) {
 			    try {
-			    	json = new JSONArray(ptStr); 
-			    	//Log.d("New json: ", json.toString());
+			    	json = new JSONArray(ptStr);
 			    } catch (JSONException e) {
 			            e.printStackTrace();
 			    }
 			} else {
 				Log.e("ServiceHandler", "Couldn't get any data from the url"); 
-				//PList.add("THIS IS GAY AS SHIT");
 			}
 			return json;
 		}
@@ -173,26 +150,13 @@ public class ServiceHandler {
 			for (i = 0; i < result.length(); i++) {
 				try {
 					c = result.getJSONObject(i);
-					Log.i("Name of Object: "+i, c.getString(TAG_NAME));
-					PList.add(c.getString(TAG_NAME));
+					//Log.i("Name of Object: "+i, c.getString(TAG));
+					PList.add(c.getString(TAG));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	        }
-			//Log.d("New json: ", json.toString());
-			// Dismiss the progress dialog
-			//if (pDialog.isShowing())
-			//    pDialog.dismiss();
-			//for(String entry: PList){
-			//	Log.i("GETPOINTS", entry);	
-			//	}
-							
-			/* Adapters are updated here, so change this to fit whatever we use in UI
-			stAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, FList);
-			festAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			inputFest.setAdapter(festAdapter);
-							*/
 		}
 	}
     
