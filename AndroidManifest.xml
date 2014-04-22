@@ -1,195 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.example.demo"
-
     android:versionCode="1"
-
     android:versionName="1.0" >
 
-
-
     <uses-sdk
-
         android:minSdkVersion="14"
-
         android:targetSdkVersion="17" />
 
-
-
     <application
-
         android:allowBackup="true"
-
         android:icon="@drawable/ic_launcher"
-
         android:label="@string/app_name"
-
         android:theme="@style/AppTheme" >
-
-        <activity android:name="com.example.demo.MainMenuActivity" android:label="@string/title_activity_main_menu">
-
+        <activity
+            android:name="com.example.demo.MainMenuActivity"
+            android:label="@string/title_activity_main_menu" >
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
 
-
-
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
-
-        </activity><activity
-
+        </activity>
+        <activity
             android:name="com.example.demo.MainActivity"
-
             android:label="@string/app_name" >
-
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
 
-
-
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
-
         </activity>
-
         <activity
-
             android:name="com.example.demo.JsonHandler"
-
             android:label="@string/app_name" >
-
         </activity>
-
         <activity
-
             android:name="com.example.demo.HttpHandler"
-
             android:label="@string/app_name" >
-
         </activity>
-
         <activity
-
             android:name="system.ArActivity"
-
             android:configChanges="keyboardHidden|orientation"
-
             android:label="@string/app_name"
-
             android:screenOrientation="landscape" >
-
         </activity>
-
-
 
         <!-- Custom List is used to easily display lists of any type of object -->
 
         <activity android:name="gui.CustomListActivity" >
-
         </activity>
-
-
 
         <!-- the error handler will be automatically displayed when an error appears -->
 
         <activity
-
             android:name="system.ErrorHandler"
-
             android:process=":myexeptionprocess"
-
             android:taskAffinity="system.ErrorHandler" >
-
             <intent-filter>
-
                 <category android:name="android.intent.category.DEFAULT" />
-
-
 
                 <action android:name="android.intent.action.VIEW" />
 
-
-
                 <data android:mimeType="errors/myUnhandleCatcher" />
-
             </intent-filter>
-
         </activity>
-
-
 
         <!-- is needed to display information on application startup -->
 
         <activity
-
             android:name="gui.InfoScreen"
-
             android:theme="@android:style/Theme.Dialog" >
-
         </activity>
-
-
 
         <!-- an activity to easily display any kind of ui -->
 
         <activity
-
             android:name="gui.simpleUI.SimpleUIv1"
-
             android:theme="@android:style/Theme.Translucent" >
-
         </activity>
-
+        <activity
+            android:name="com.example.demo.TakeMeThere"
         
-
+            android:parentActivityName="com.example.demo.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.demo.MainActivity" />
+        </activity>
     </application>
 
-
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
-
     <uses-feature android:name="android.hardware.camera" />
-
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <uses-feature android:glEsVersion="0x00020000" />
 
     <!--
-
          This should be added to to allow the fullscreen mode to big screen 
 
-		devices like the samsung galaxy tab
-
+		devices like the samsung galaxy tab
     -->
 
     <supports-screens
-
         android:anyDensity="true"
-
         android:largeScreens="true"
-
         android:normalScreens="true"
-
         android:smallScreens="true" />
-
-
 
 </manifest>

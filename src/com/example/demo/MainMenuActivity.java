@@ -36,11 +36,10 @@ public class MainMenuActivity extends Activity {
 		setContentView(R.layout.mainmenu);
 		
 		Button b_start = (Button)this.findViewById(R.id.main_menu_start);
-		// change
-		b_start.setOnClickListener(l_start);		
-		sh = new ServiceHandler(this);
+		b_start.setOnClickListener(l_start);	
 		
-		//new GetPoints().execute();
+		Button b_spots = (Button)this.findViewById(R.id.spots_near_you);
+		b_spots.setOnClickListener(l_spots);
 	}
 
 	@Override
@@ -55,23 +54,14 @@ public class MainMenuActivity extends Activity {
 	    	
 	    	Intent myIntent = new Intent(v.getContext(), MainActivity.class);
 	    	startActivity(myIntent);
-	    	
-	    	//Intent JSONIntent = new Intent(v.getContext(), JsonHandler.class);
-	    	//startActivity(JSONIntent);
-	    	
-	    	
 	    }
 	};
-	private OnClickListener tester = new OnClickListener() {
+	private OnClickListener l_spots = new OnClickListener() {
 	    public void onClick(View v) {
-	    	ArrayList<String> list = new ArrayList<String>();
-	    	try {
-	    		list = sh.getList(pt_url, TAG_NAME);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    	Toast.makeText(MainMenuActivity.this, "PList: "+list, Toast.LENGTH_LONG).show();
+	      // do something when the button is clicked
+	    	
+	    	Intent myIntent = new Intent(v.getContext(), TakeMeThere.class);
+	    	startActivity(myIntent);
 	    }
 	};
 }

@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import commands.Command;
+import commands.ui.CommandShowToast;
 
 import geo.GeoObj;
 import gl.GL1Renderer;
@@ -59,7 +60,9 @@ public class MainActivity extends Activity {
 	
 	ArrayList<Double> LatList, LonList;
 	ArrayList<String> PList;
+	ArrayList<String> AfList;
 	private ProgressDialog pDialog;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -108,18 +111,30 @@ public class MainActivity extends Activity {
 									locationList.add(newLoc(LatList.get(i), LonList.get(i)));
 								}
 								
+								/*locationList.add(newLoc(34.677772, -82.836192));
+								PList.add("Reflc Pond");
+								locationList.add(newLoc(34.677180, -82.835180));
+								PList.add("Daniel Hall");
+								locationList.add(newLoc(34.679302, -82.835135));
+								PList.add("Sikes Hall");
+								*/
+								
 							    String text = "";
-							    Obj x;
+							    GeoObj x;
 							    //for(Location i: locationList){
 							    for(int i = 0; i < PList.size(); i++){
 							    	//http://stackoverflow.com/questions/11843402/android-droidar-setting-up-pois-and-show-details-on-click
 							    	//Command k = new Command();
-							    	x = new GeoObj(locationList.get(i));
+							    	//x = new GeoObj(locationList.get(i));
 							    	
-							    	//x.setOnClickCommand(k);
+							    	
 							    	text = PList.get(i);
+							    	
+							    	
+							    	
 							    	Log.i("PLISTTEST","PList.size(): " + Integer.toString(PList.size()));
 							    	Log.i("PLISTTEST","PList.get(i): " + PList.get(i));
+							    	
 							    	
 							    	
 							    	Bitmap b = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
@@ -138,9 +153,17 @@ public class MainActivity extends Activity {
 							    	
 							    	MeshComponent locationMesh = objectFactory.newTexturedSquare("HelloBitmap" + Integer.toString(i), b, 10);
 							    	locationMesh.addAnimation(new AnimationFaceToCamera(camera, 0.5f));
+//							    	locationMesh.setOnClickCommand(new CommandTakeMeNow(getActivity(), text));
+							    	locationMesh.setOnClickCommand(new CommandTakeMeNow(getActivity(), AfList.get(0)));
+
 							    	
+							    	
+							    	x = new GeoObj(locationList.get(i));
+							    	//
 							    	x.setComp(locationMesh);
 							    	//x.setComp(objectFactory.newTexturedSquare("HelloBitMap", b, 10));
+							    	
+							    	//x.setOnClickCommand(new CommandShowToast(getActivity(), text));
 							    	
 							    	world.add(x);
 							    }
@@ -195,7 +218,9 @@ public class MainActivity extends Activity {
 	
 	
 	//JSON **MIGHT NOT WORK**
-	private static String pt_url="http://people.clemson.edu/~myankou/php/EyeApp/points.php";
+	//private static String pt_url="http://people.clemson.edu/~myankou/php/EyeApp/points.php";
+	private static String pt_url="http://miyanki.com/EyeApp/php/points.php";
+	private static String af_url="http://miyanki.com/EyeApp/php/artifacts.php";
 	private static final String TAG_NAME = "name";
 	//add tags for latitude and longitude and campus ID
 	//ArrayList<String> PList;
@@ -221,20 +246,31 @@ public class MainActivity extends Activity {
 						 
 			            // Making a request to url and getting response
 			            String ptStr = sh.makeServiceCall(pt_url, ServiceHandler.GET);
-			 
+			            String afStr = sh.makeServiceCall(af_url, ServiceHandler.GET);
+			            
 			            Log.d("Response: ", "> " + ptStr);
 			 
 			            if (ptStr != null) {
 			                try {
+			                	JSONArray afJsonObj = new JSONArray(afStr);
 			                    JSONArray jsonObj = new JSONArray(ptStr);
 			                    PList = new ArrayList<String>();
 			                    //PList.add("TEST");
+			                    AfList = new ArrayList<String>();
 			                    
 			                    LatList = new ArrayList<Double>();
 			                    LonList = new ArrayList<Double>();
 			                  
 			                    Log.d("jsonObj.length()", Integer.toString(jsonObj.length()));
 			                    
+			                    String urlToAdd = "";
+			                    
+			                    for(int i = 0; i < afJsonObj.length(); i++){
+			                    	JSONObject c = afJsonObj.getJSONObject(i);
+			                    	urlToAdd = c.getString("data");
+			                    	
+			                    	AfList.add(urlToAdd);
+			                    }
 								
 			                    String strToAdd = "";
 								//add 3 more for loops for each set of variables
