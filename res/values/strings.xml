@@ -9,9 +9,6 @@
     <string name="onradiobuttonclicked">onRadioButtonClicked</string>
     <string name="local_db">Local DB</string>
     <string name="external_db">External DB</string>
-    <string name="title_activity_spot_view">SpotViewActivity</string>
-    <string name="eye">Eye</string>
-    <string name="spots_near_you">Spots near you</string>
-    <string name="_quot_quot_eye">&amp;quot;      &amp;quot; Eye</string>
+    <string name="title_activity_take_me_there">TakeMeThere</string>
 
 </resources>

@@ -20,15 +20,16 @@ public class CommandTakeMeNow extends Command {
 
 	//private String myTextToDisplay;
 	private Context myContext;
-	private String myName;
-
+	//private String myName;
+	int myId;
+	
 	private LinearLayout myLinLayout;
 	private EditText myEditText;
 
-	public CommandTakeMeNow(Context c , String n) {
+	public CommandTakeMeNow(Context c , int id) {
 		//myTextToDisplay = textToDisplay;
 		myContext = c;
-		myName = n;
+		myId = id;
 	}
 
 	@Override
@@ -36,7 +37,7 @@ public class CommandTakeMeNow extends Command {
 
 		Intent intent = new Intent(myContext, TakeMeThere.class );
 		//String message = "TEST MESSAGE";
-		intent.putExtra("SENT_NAME", myName);
+		intent.putExtra("SENT_ID", myId);
 		//myContext.startActivity(intent);
 		myContext.startActivity(intent);
 		/*

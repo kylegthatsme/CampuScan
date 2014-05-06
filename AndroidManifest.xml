@@ -17,14 +17,12 @@
             android:name="com.example.demo.MainMenuActivity"
             android:label="@string/title_activity_main_menu" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                
             </intent-filter>
         </activity>
         <activity
             android:name="com.example.demo.MainActivity"
-            android:label="@string/app_name" >
+            android:label="Campus Scan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -81,7 +79,7 @@
         </activity>
         <activity
             android:name="com.example.demo.TakeMeThere"
-        
+            android:label="@string/title_activity_take_me_there"
             android:parentActivityName="com.example.demo.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

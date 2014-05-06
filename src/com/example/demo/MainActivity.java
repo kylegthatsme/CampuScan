@@ -16,6 +16,9 @@ import commands.Command;
 import commands.ui.CommandShowToast;
 
 import geo.GeoObj;
+
+import gl.*;
+
 import gl.GL1Renderer;
 import gl.GLFactory;
 import gl.Color;
@@ -53,13 +56,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-	//LocationManager lm;
-	//Location location;
 	double x;
 	double y;
 	
 	ArrayList<Double> LatList, LonList;
 	ArrayList<String> PList;
+	ArrayList<Integer> IdList;
 	ArrayList<String> AfList;
 	private ProgressDialog pDialog;
 	
@@ -77,6 +79,7 @@ public class MainActivity extends Activity {
 		LonList = new ArrayList<Double>();
 		LatList = new ArrayList<Double>();
 		PList = new ArrayList<String>();
+		IdList = new ArrayList<Integer>();
 		
 		b.setOnClickListener(new OnClickListener() {
 
@@ -137,14 +140,21 @@ public class MainActivity extends Activity {
 							    	
 							    	
 							    	
-							    	Bitmap b = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
+							    	Bitmap b = Bitmap.createBitmap(800, 400, Bitmap.Config.ARGB_8888);
+							    	
 							    	Canvas c = new Canvas(b);
 							    	c.drawBitmap(b, 0, 0, null);
-							    	c.drawColor(Color.white().toIntRGB());
+							    	//c.drawColor(Color.white().toIntRGB());
+							    	
+							    	//c.drawColor(Color.blue().toIntRGB());
+							    	c.drawColor(-502140900);
+							    	
 							    	
 							    	TextPaint textPaint = new TextPaint();
 							    	textPaint.setAntiAlias(true);
 							    	textPaint.setTextSize(128.0F);
+							    	textPaint.setColor(Color.white().toIntRGB());
+							    	//text = Integer.toString(Color.white().toIntRGB());
 							    	StaticLayout sl= new StaticLayout(text, textPaint, b.getWidth()-8, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 							    	//DynamicLayout dynamicText = new DynamicLayout(text, textPaint, b.getWidth()-8, Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
 							    	c.translate(6, 40);
@@ -153,8 +163,8 @@ public class MainActivity extends Activity {
 							    	
 							    	MeshComponent locationMesh = objectFactory.newTexturedSquare("HelloBitmap" + Integer.toString(i), b, 10);
 							    	locationMesh.addAnimation(new AnimationFaceToCamera(camera, 0.5f));
-//							    	locationMesh.setOnClickCommand(new CommandTakeMeNow(getActivity(), text));
-							    	locationMesh.setOnClickCommand(new CommandTakeMeNow(getActivity(), AfList.get(0)));
+							        //locationMesh.setOnClickCommand(new CommandTakeMeNow(getActivity(), text));
+							    	locationMesh.setOnClickCommand(new CommandTakeMeNow(getActivity(), IdList.get(i)));
 
 							    	
 							    	
@@ -216,12 +226,13 @@ public class MainActivity extends Activity {
 		//android.os.Process.killProcess(android.os.Process.myPid());
 	}
 	
-	
+	//
 	//JSON **MIGHT NOT WORK**
 	//private static String pt_url="http://people.clemson.edu/~myankou/php/EyeApp/points.php";
 	private static String pt_url="http://miyanki.com/EyeApp/php/points.php";
 	private static String af_url="http://miyanki.com/EyeApp/php/artifacts.php";
 	private static final String TAG_NAME = "name";
+	private static final String TAG_ID = "id";
 	//add tags for latitude and longitude and campus ID
 	//ArrayList<String> PList;
 	//ArrayList<Double> LatList, LonList;
@@ -252,33 +263,38 @@ public class MainActivity extends Activity {
 			 
 			            if (ptStr != null) {
 			                try {
-			                	JSONArray afJsonObj = new JSONArray(afStr);
+			                	//JSONArray afJsonObj = new JSONArray(afStr);
 			                    JSONArray jsonObj = new JSONArray(ptStr);
 			                    PList = new ArrayList<String>();
 			                    //PList.add("TEST");
 			                    AfList = new ArrayList<String>();
+			                    IdList = new ArrayList<Integer>();
 			                    
 			                    LatList = new ArrayList<Double>();
 			                    LonList = new ArrayList<Double>();
 			                  
 			                    Log.d("jsonObj.length()", Integer.toString(jsonObj.length()));
 			                    
-			                    String urlToAdd = "";
-			                    
+			                    //String urlToAdd = "";
+			                    /*
 			                    for(int i = 0; i < afJsonObj.length(); i++){
 			                    	JSONObject c = afJsonObj.getJSONObject(i);
 			                    	urlToAdd = c.getString("data");
 			                    	
 			                    	AfList.add(urlToAdd);
 			                    }
-								
+								*/
+								int intToAdd = 999;
 			                    String strToAdd = "";
 								//add 3 more for loops for each set of variables
 			                    for (int i = 0; i < jsonObj.length(); i++) {
 			                        JSONObject c = jsonObj.getJSONObject(i);
 			                        strToAdd = c.getString(TAG_NAME);
+			                        intToAdd = c.getInt(TAG_ID);
+			                        
 			                        Log.d("strToAdd", "JSONSTRING: " + strToAdd);
 			                		PList.add(strToAdd);
+			                		IdList.add(intToAdd);
 			                		LatList.add(c.getDouble("gps_lat"));
 			                		LonList.add(c.getDouble("gps_lon"));
 			                    }
